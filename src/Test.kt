@@ -23,7 +23,7 @@ fun main(args: Array<String>) {
     // static
     println(staticMethod("123"));
 
-    // 객체
+    // 객체 (객체 프로퍼티에 자동으로 getter, setter 생성됨)
     val z = Student(11);
     println(z.data)
 
@@ -33,7 +33,23 @@ fun main(args: Array<String>) {
     // vararg (가변인자)
     // 코틀린에서는 가변인자의 array를 보내려면 풀어서 보내야 한다. 이때 *를 사용하면 됨
     val array = arrayOf("a","b", "c")
-    print(manyVar(*array));
+    println(manyVar(*array));
+
+    // 문자열 처리
+    println(parsePath("/Users/wedul/test.txt"))
+
+    // 싱글톤 테스트
+    println(SingleToneTest.test())
+}
+
+// directory pull path parsing 테스트 코드
+fun parsePath(path: String): String {
+    val directory = path.substringBeforeLast("/")
+    val fullName = path.substringAfterLast("/")
+    val fileName = fullName.substringBeforeLast(".")
+    val extension = fullName.substringAfterLast(".")
+
+    return "Dir: $directory, name : $fileName, ext: $extension"
 }
 
 // 가변인자

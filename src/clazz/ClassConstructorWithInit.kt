@@ -1,4 +1,10 @@
 package clazz
 
-class ClassConstructorWithInit {
+class ClassConstructorWithInit(_nickName: String) {
+    val nickName: String;
+
+    init {
+        nickName = _nickName
+    }
+
 }

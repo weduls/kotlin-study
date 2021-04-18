@@ -4,6 +4,7 @@ package student
 const val count = 2220;
 
 class Student(
+        // 기본 타입은 val
         input: Int
 ) {
     val data: Int = input;

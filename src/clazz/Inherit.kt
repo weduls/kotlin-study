@@ -1,5 +1,5 @@
 package clazz
 
-class Inhirit: PossibleInherit() {
+class Inherit: PossibleInherit() {
 
 }
