@@ -1,5 +1,6 @@
+import static.CompanionObject
 import static.staticMethod
-import student.*
+import theory.*
 import java.lang.StringBuilder
 
 // age를 별도로 지정하지 않을 경우 age는 null
@@ -18,7 +19,7 @@ fun main(args: Array<String>) {
     println(callData);
 
     // 함수 호출
-    println(joinToStringFuc(listOf(1,2,3), ",", postfix = "postfix"))
+    println(joinToStringFuc(listOf(1, 2, 3), ",", postfix = "postfix"))
 
     // static
     println(staticMethod("123"));
@@ -32,7 +33,7 @@ fun main(args: Array<String>) {
 
     // vararg (가변인자)
     // 코틀린에서는 가변인자의 array를 보내려면 풀어서 보내야 한다. 이때 *를 사용하면 됨
-    val array = arrayOf("a","b", "c")
+    val array = arrayOf("a", "b", "c")
     println(manyVar(*array));
 
     // 문자열 처리
@@ -40,6 +41,58 @@ fun main(args: Array<String>) {
 
     // 싱글톤 테스트
     println(SingleToneTest.test())
+
+    // 스태틱 클래스
+    val companionObject = CompanionObject.User("wedul");
+    println(companionObject._name)
+
+    // 최상위 함수 참조
+    run(::saluate)
+
+    /**
+     * 람다 테스트
+    */
+    // filter
+    val list = listOf(1,2,3,4)
+    println(list.filter { it % 2 == 0 })
+
+    // flatmap
+    val string = listOf("abc", "def")
+    println(string.flatMap { it.toList() })
+
+    // with 사용
+    println(alphabet())
+
+    // when
+    println(recognize('8'))
+
+    // apply
+    println(digitWithApply());
+}
+
+// when 사용
+fun recognize(c: Char) = when (c) {
+    in '0'..'9' -> "It's a digit!"
+    in 'a'..'z', in 'A'..'Z' -> "It's a letter!"
+    else -> "I don't know"
+}
+
+fun digitWithApply() = StringBuilder().apply {
+    for (i in 100 downTo 0 step 2) {
+        append(i)
+    }
+}.toString()
+
+// with 사용
+fun alphabet() = with(StringBuilder()) {
+    for (letter in 'A'..'Z') {
+        append(letter)
+    }
+    toString()
+}
+
+fun saluate() {
+    println("Salute!")
 }
 
 // directory pull path parsing 테스트 코드
