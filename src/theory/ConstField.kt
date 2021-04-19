@@ -1,4 +1,4 @@
-package student
+package theory
 
 // getter, setter가 생기지 않게 하려면 const를 붙인다. (static final과 동일함)
 const val count = 2220;
