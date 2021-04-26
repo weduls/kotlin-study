@@ -68,6 +68,44 @@ fun main(args: Array<String>) {
 
     // apply
     println(digitWithApply());
+
+    // nullable function
+    printUpperWithNullable("abc")
+    printUpperWithNullable(null)
+
+    // property nullable
+    val ceo = Employee("wedul", null)
+    println(ceo.managerName(ceo))
+
+    // 엘비스 연산자
+    strLenSafe(null)
+    strLenSafe("wedul")
+
+    // 캐스팅 시 에러나면 엘비스 표현식 되는지 테스트
+    println(castingNullable("abc"))
+    println(castingNullable("123"))
+
+    // ignore null
+    println(ignoreNulls("wedul"))
+}
+
+fun ignoreNulls(s: String?) {
+    val sNotNull: String = s!!
+    println(sNotNull.length)
+}
+
+fun castingNullable(s: Any?) = s as? Int ?: false
+
+fun strLenSafe(s: String?): Int = s?.length ?: 0
+
+fun printUpperWithNullable(s: String?) {
+    // ?.는 if(s != null) s.toUpperCase() else null 과 동일.
+    val allCaps: String? = s?.toUpperCase()
+    println(allCaps)
+}
+
+class Employee(val name: String, val manager: Employee?) {
+    fun managerName(employee: Employee): String? = employee.manager?.name
 }
 
 // when 사용
