@@ -2,6 +2,7 @@ import static.CompanionObject
 import static.staticMethod
 import theory.*
 import java.lang.StringBuilder
+import kotlin.random.Random
 
 // age를 별도로 지정하지 않을 경우 age는 null
 data class Person(val name: String, val age: Int? = null)
@@ -87,6 +88,93 @@ fun main(args: Array<String>) {
 
     // ignore null
     println(ignoreNulls("wedul"))
+
+    // 문자열 템플릿
+    val name = "wedul"
+    println("name : $name")
+
+    val em = Wedul("wedul", 21);
+    // getter
+    println(em.name);
+    println(em.age)
+    // custom getter
+    println(em.getAge)
+    // setter (val 타입이라 setter 안됨)
+//    em.name = "babo"
+    // var type은 setter 가능
+    em.address = "seoul kangdong"
+
+    // enum
+    println(Food.BANANA.cal)
+
+    // when test
+    println(whenExistParameterTest(1))
+    println(whenNotExistParameterTest())
+
+    // 타입 체크
+    val variable = "123";
+    println(variable is String)
+
+    // smart casting 테스트
+    println(smartCastTest(10))
+
+    // let 테스트
+    val nullableStr: String? = "dd";
+    // null이 될 수 있는 데이터는 인자로 사용할 수 없다. (컴파일 에러)
+    //    println(smartCastTest(nullableStr))
+
+    // let 함수를 이용해서 nullable한 데이터를 안전하게 사용
+    nullableStr?.let { str -> println(smartCastTest(str)) }
+
+    // 함수에 반환형에도 let 사용 가능
+    whenNotExistParameterTest()?.let { d -> println(d) }
+
+    // null이 될 수 있는 타입에 대한 확장을 정의
+    println(null.isNullOrBlank())
+
+    println(printHashCode(123))
+}
+
+// generic null이 될 수 없는 함수
+fun <T: Any> printHashCode(t: T) {
+    println(t.hashCode())
+}
+
+// null이 될 수 있는 타입에 대한 확장함수
+fun String?.isNullOrBlank(): Boolean  = this == null || this.isBlank()
+
+fun smartCastTest(a : Any): Int {
+    if (a is Int) {
+        return 1 + a
+    }
+    return -1
+}
+
+fun whenNotExistParameterTest(): Int {
+    val random = Random(10);
+
+    return when {
+        random.nextInt() > 5 -> 10
+        random.nextInt() < 3 -> 20
+        else -> 30
+    }
+}
+
+fun whenExistParameterTest(a: Int) = when (a) {
+    1 -> "wedul"
+    2 -> "chul"
+    else -> "babo"
+}
+
+enum class Food(val cal: Int) {
+    BANANA(100)
+}
+
+class Wedul(val name: String, val age: Int, var address: String = "seoul") {
+    val getAge: Int
+        get() {
+            return age + 10
+        }
 }
 
 fun ignoreNulls(s: String?) {
