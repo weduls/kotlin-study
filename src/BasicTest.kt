@@ -178,9 +178,9 @@ class Wedul(val name: String, val age: Int, var address: String = "seoul") {
         }
 }
 
-fun ignoreNulls(s: String?) {
+fun ignoreNulls(s: String?): Int {
     val sNotNull: String? = s
-    println(sNotNull!!.length)
+    return sNotNull!!.length
 }
 
 fun castingNullable(s: Any?) = s as? Int ?: false
