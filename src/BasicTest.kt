@@ -125,6 +125,7 @@ fun main(args: Array<String>) {
 
     // let 함수를 이용해서 nullable한 데이터를 안전하게 사용
     nullableStr?.let { str -> println(smartCastTest(str)) }
+    println("null is ${null?.let { str -> println(smartCastTest(str)) }}")
 
     // 함수에 반환형에도 let 사용 가능
     whenNotExistParameterTest()?.let { d -> println(d) }
