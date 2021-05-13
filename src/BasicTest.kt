@@ -87,7 +87,7 @@ fun main(args: Array<String>) {
     println(castingNullable("123"))
 
     // ignore null
-    println(ignoreNulls("wedul"))
+    println("ignore nulls ${ignoreNulls("wedul")}")
 
     // 문자열 템플릿
     val name = "wedul"
@@ -179,8 +179,8 @@ class Wedul(val name: String, val age: Int, var address: String = "seoul") {
 }
 
 fun ignoreNulls(s: String?) {
-    val sNotNull: String = s!!
-    println(sNotNull.length)
+    val sNotNull: String? = s
+    println(sNotNull!!.length)
 }
 
 fun castingNullable(s: Any?) = s as? Int ?: false
